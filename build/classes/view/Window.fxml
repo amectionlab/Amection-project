@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.BottomNavigation?>
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
+<?import com.gluonhq.charm.glisten.control.ExpansionPanel?>
+<?import com.gluonhq.charm.glisten.control.ExpansionPanel.CollapsedPanel?>
+<?import com.gluonhq.charm.glisten.control.ExpansionPanel.ExpandedPanel?>
+<?import com.gluonhq.charm.glisten.control.ExpansionPanelContainer?>
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutY="102.0" prefHeight="701.0" prefWidth="242.0">
+         <children>
+            <ExpansionPanelContainer>
+                <items>
+                    <ExpansionPanel>
+                        <collapsedContent>
+                            <ExpansionPanel.CollapsedPanel prefHeight="60.0">
+                                <titleNodes>
+                                    <Label prefHeight="18.0" prefWidth="136.0" text="Pacientes" />
+                                </titleNodes>
+                            </ExpansionPanel.CollapsedPanel>
+                        </collapsedContent>
+                     <expandedContent>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="200.0" text="Lista pacientes">
+                                 <graphic>
+                                    <Icon content="ASSIGNMENT_IND" />
+                                 </graphic></Button>
+                              <Button mnemonicParsing="false" prefWidth="200.0" text="Pacientes criticos">
+                                 <graphic>
+                                    <Icon content="ASSESSMENT" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </expandedContent>
+                    </ExpansionPanel>
+                    <ExpansionPanel>
+                        <collapsedContent>
+                            <ExpansionPanel.CollapsedPanel prefHeight="60.0">
+                                <titleNodes>
+                                    <Label text="Agenda" />
+                                </titleNodes>
+                            </ExpansionPanel.CollapsedPanel>
+                        </collapsedContent>
+                     <expandedContent>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="200.0" text="Horario">
+                                 <graphic>
+                                    <Icon content="SCHEDULE" />
+                                 </graphic></Button>
+                           </children>
+                        </VBox>
+                     </expandedContent>
+                    </ExpansionPanel>
+                  <ExpansionPanel>
+                     <collapsedContent>
+                        <ExpansionPanel.CollapsedPanel prefHeight="60.0">
+                            <titleNodes>
+                                <Label text="Estadísticas" />
+                            </titleNodes>
+                        </ExpansionPanel.CollapsedPanel>
+                     </collapsedContent>
+                     <expandedContent>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="200.0" text="Resumen citas">
+                                 <graphic>
+                                    <Icon content="ASSESSMENT" />
+                                 </graphic>
+                              </Button>
+                           </children></VBox>
+                     </expandedContent>
+                  </ExpansionPanel>
+                </items>
+            </ExpansionPanelContainer>
+         </children>
+      </VBox>
+      <ExpansionPanel.ExpandedPanel layoutY="-3.0" opacity="0.95" prefHeight="105.0" prefWidth="1200.0" style="-fx-background-color: -alternate-swatch-700;" />
+      <BottomNavigation layoutX="306.0" layoutY="209.0" />
+      <Label layoutX="36.0" layoutY="27.0" prefHeight="33.0" prefWidth="150.0" text="Amection" textFill="#fcfcfc">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="769.0" layoutY="69.0" prefHeight="33.0" prefWidth="98.0" text="Dermatologo" textFill="#f8f0f0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <BottomNavigation layoutX="911.0" layoutY="187.0" />
+      <BottomNavigation layoutX="944.0" layoutY="17.0">
+          <actionItems>
+              <BottomNavigationButton selected="true" text="Recent">
+                  <graphic>
+                      <Icon content="RECENT_ACTORS" />
+                  </graphic>
+              </BottomNavigationButton>
+              <BottomNavigationButton text="Favourite">
+                  <graphic>
+                      <Icon content="FAVORITE" />
+                  </graphic>
+              </BottomNavigationButton>
+              <BottomNavigationButton text="Nearby">
+                  <graphic>
+                      <Icon content="NEAR_ME" />
+                  </graphic>
+              </BottomNavigationButton>
+          </actionItems>
+      </BottomNavigation>
+   </children>
+</AnchorPane>

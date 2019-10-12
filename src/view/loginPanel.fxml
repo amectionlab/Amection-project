@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane fx:id="rootLoginRegister" prefHeight="600.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginPanelController">
+  <tabs>
+    <Tab fx:id="loginTab" text="Iniciar sesión">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="44.900001525878906" layoutY="4.0" spacing="25.0">
+                     <children>
+                        <Label text="Inicia sesión con tu Cuenta Amection">
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="loginRut" prefWidth="350.0" promptText="Rut" />
+                        <PasswordField fx:id="loginPassword" prefWidth="350.0" promptText="Contraseña" />
+                        <CheckBox fx:id="loginIsAdmin" mnemonicParsing="false" text="Iniciar como administrador" />
+                        <Button fx:id="loginSubmit" mnemonicParsing="false" onAction="#submit" prefWidth="349.0" text="Iniciar sesión" />
+                        <Hyperlink fx:id="loginRecovery" text="¿Has olvidado tu contraseña?" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+      </content>
+    </Tab>
+    <Tab fx:id="registerTab" text="Crear una cuenta">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="49.0" layoutY="4.0" spacing="25.0">
+                     <children>
+                        <Label text="Crea tu Cuenta Amection">
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="10.0">
+                           <children>
+                              <TextField fx:id="registerName" promptText="Nombre/s" />
+                              <TextField fx:id="registerLastname" promptText="Apellido/s" />
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </HBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <Label text="Fecha de nacimiento">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <HBox spacing="5.0">
+                                 <children>
+                                    <ComboBox fx:id="registerMonth" editable="true" prefHeight="26.0" prefWidth="116.0" promptText="Mes" visibleRowCount="12" />
+                                    <ComboBox fx:id="registerDay" editable="true" prefHeight="26.0" prefWidth="116.0" promptText="Dia" visibleRowCount="31" />
+                                    <ComboBox fx:id="registerYear" editable="true" prefHeight="26.0" prefWidth="116.0" promptText="Año" visibleRowCount="0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0">
+                           <children>
+                              <TextField fx:id="registerRut" floatText="Rut" />
+                              <TextField fx:id="registerEmail" floatText="Correo electronico" />
+                              <TextField fx:id="registerPassword1" floatText="Contraseña" />
+                              <TextField fx:id="registerPassword2" floatText="Re-ingrese contraseña" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Button fx:id="registerSubmit" layoutX="49.0" layoutY="450.0" mnemonicParsing="false" prefWidth="352.0" text="Registrarse" />
+               </children>
+            </AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
