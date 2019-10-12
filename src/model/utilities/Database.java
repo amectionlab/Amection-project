@@ -5,10 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import model.collections.*;
 import model.Administrator;
-import model.Administrator;
 import model.Dermatologist;
-import model.Dermatologist;
-import model.Patient;
 import model.Patient;
 
 public class Database {
@@ -141,6 +138,4 @@ public class Database {
     public boolean deletePatient(String rut) {
         return patientDatabase.removeFromCollection(rut);
     }
-    
-    
 }

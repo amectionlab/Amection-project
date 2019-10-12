@@ -21,7 +21,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <VBox layoutX="44.900001525878906" layoutY="4.0" spacing="25.0">
+                  <VBox layoutX="35.0" layoutY="25.0" prefWidth="380.0" spacing="25.0">
                      <children>
                         <Label text="Inicia sesión con tu Cuenta Amection">
                            <padding>
@@ -31,10 +31,11 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="loginRut" prefWidth="350.0" promptText="Rut" />
-                        <PasswordField fx:id="loginPassword" prefWidth="350.0" promptText="Contraseña" />
+                        <TextField fx:id="loginRut" promptText="Rut" />
+                        <PasswordField fx:id="loginPassword" promptText="Contraseña" />
                         <CheckBox fx:id="loginIsAdmin" mnemonicParsing="false" text="Iniciar como administrador" />
-                        <Button fx:id="loginSubmit" mnemonicParsing="false" onAction="#submit" prefWidth="349.0" text="Iniciar sesión" />
+                        <Label fx:id="loginErrorText" alignment="CENTER" contentDisplay="CENTER" prefWidth="380.0" text="Label" textAlignment="CENTER" textFill="RED" visible="false" />
+                        <Button fx:id="loginSubmit" mnemonicParsing="false" onAction="#submit" prefWidth="380.0" text="Iniciar sesión" />
                         <Hyperlink fx:id="loginRecovery" text="¿Has olvidado tu contraseña?" />
                      </children>
                   </VBox>
@@ -91,7 +92,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <Button fx:id="registerSubmit" layoutX="49.0" layoutY="450.0" mnemonicParsing="false" prefWidth="352.0" text="Registrarse" />
+                  <Button fx:id="registerSubmit" layoutX="49.0" layoutY="450.0" mnemonicParsing="false" prefWidth="358.0" text="Registrarse" />
                </children>
             </AnchorPane>
       </content>
