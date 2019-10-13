@@ -7,11 +7,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.utilities.Database;
+import model.utilities.Session;
 
 public class Main extends Application{
     
     //Instanciacion de clase base de datos
     public static Database db = new Database();
+    public static Session session = new Session();
     
     @Override
     public void start(Stage stage) throws Exception {

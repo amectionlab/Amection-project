@@ -1,15 +1,16 @@
 package controller;
 
+import Security.Authenticator;
 import com.gluonhq.charm.glisten.control.TextField;
-import static controller.Main.db;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import model.Dermatologist;
+import javafx.scene.input.MouseEvent;
 
 public class loginPanelController implements Initializable {
     
@@ -19,33 +20,25 @@ public class loginPanelController implements Initializable {
     private PasswordField loginPassword;
     @FXML
     private Label loginErrorText;
+    @FXML
+    private CheckBox loginIsAdmin;
     
     
     //Acción de botón de inicio de sesión
     @FXML
     private void submit(ActionEvent e) {
         
-        
-        Dermatologist user = db.searchDermatologist(loginRut.getText());
-        
-        if (user != null) {
-            
-            if (loginErrorText.isVisible()) {
-                loginErrorText.setVisible(false);
-            }
-            
-            //Se logea usuario
-        }
-        else {
-            loginErrorText.setText("Rut y/o contraseña incorrectos.");
+        if (Authenticator.validate(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected()) != null) {
+            System.out.println("Existe");
+        } else {
+            loginErrorText.setText("Rut y/o contraseña incorrecto/s.");
             loginErrorText.setVisible(true);
         }
-        
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
     }
-    
+
 }

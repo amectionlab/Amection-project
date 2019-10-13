@@ -34,7 +34,7 @@
                         <TextField fx:id="loginRut" promptText="Rut" />
                         <PasswordField fx:id="loginPassword" promptText="Contraseña" />
                         <CheckBox fx:id="loginIsAdmin" mnemonicParsing="false" text="Iniciar como administrador" />
-                        <Label fx:id="loginErrorText" alignment="CENTER" contentDisplay="CENTER" prefWidth="380.0" text="Label" textAlignment="CENTER" textFill="RED" visible="false" />
+                        <Label fx:id="loginErrorText" alignment="CENTER" contentDisplay="CENTER" prefWidth="380.0" textAlignment="CENTER" textFill="RED" visible="false" />
                         <Button fx:id="loginSubmit" mnemonicParsing="false" onAction="#submit" prefWidth="380.0" text="Iniciar sesión" />
                         <Hyperlink fx:id="loginRecovery" text="¿Has olvidado tu contraseña?" />
                      </children>
