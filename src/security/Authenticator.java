@@ -1,5 +1,5 @@
 
-package Security;
+package security;
 
 import static controller.Main.db;
 import model.Administrator;

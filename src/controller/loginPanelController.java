@@ -1,6 +1,6 @@
 package controller;
 
-import Security.Authenticator;
+import security.Authenticator;
 import com.gluonhq.charm.glisten.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
