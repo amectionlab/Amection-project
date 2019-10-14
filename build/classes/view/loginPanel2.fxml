@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<JFXTabPane fx:id="tabContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginPanelController">
+   <tabs>
+      <Tab fx:id="loginTab" text="Iniciar sesión">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="570.0" prefWidth="450.0">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="450.0" text="Inicia sesión con tu cuenta Amection">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <VBox prefWidth="401.0" spacing="30.0">
+                           <children>
+                              <JFXTextField fx:id="loginRut" labelFloat="true" promptText="Rut" />
+                              <JFXPasswordField fx:id="loginPassword" labelFloat="true" promptText="Contraseña" />
+                              <JFXCheckBox fx:id="loginIsAdmin" text="Iniciar como administrador" />
+                              <Label fx:id="loginErrorText" alignment="CENTER" prefWidth="450.0" text="Error" textFill="RED" visible="false" />
+                              <JFXButton fx:id="loginButton" onAction="#loginSubmit" prefWidth="350.0" style="-fx-background-color: #C0C0C0;" text="Iniciar sesión" />
+                              <Hyperlink text="¿Olvidó su contraseña?" />
+                           </children>
+                           <padding>
+                              <Insets left="49.0" right="49.0" top="25.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab fx:id="loginTab" text="Crear una cuenta">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="600.0" prefWidth="450.0" spacing="25.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="450.0" text="Crea tu cuenta Amection">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="25.0">
+                           <children>
+                              <JFXComboBox prefWidth="166.0" promptText="Nombre/s" />
+                              <JFXComboBox prefWidth="166.0" promptText="Apellido/s" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="49.0" right="49.0" />
+                           </padding>
+                        </HBox>
+                        <VBox prefHeight="55.0">
+                           <children>
+                              <Label text="Fecha de nacimiento">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="49.0" />
+                                 </padding>
+                              </Label>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+                                 <children>
+                                    <JFXComboBox prefWidth="120.0" promptText="Dia" />
+                                    <JFXComboBox prefWidth="120.0" promptText="Mes" />
+                                    <JFXComboBox promptText="Año" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="49.0" right="49.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox>
+                           <children>
+                              <Label text="Información de cuenta">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" left="49.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Label>
+                              <VBox prefHeight="238.0" prefWidth="394.0" spacing="10.0">
+                                 <children>
+                                    <JFXTextField labelFloat="true" promptText="Rut" />
+                                    <Label alignment="CENTER" prefWidth="401.0" text="Rut invalido" visible="false" />
+                                    <JFXTextField promptText="Correo electrónico" />
+                                    <Label alignment="CENTER" prefWidth="401.0" text="Correo invalido" visible="false" />
+                                    <JFXTextField promptText="Ingrese una contraseña" />
+                                    <Label alignment="CENTER" prefWidth="401.0" text="password label" visible="false" />
+                                    <JFXTextField promptText="Re-ingrese contraseña" />
+                                    <Label alignment="CENTER" prefWidth="401.0" text="Las contraseñas no coinciden" visible="false" />
+                                    <JFXButton prefWidth="450.0" style="-fx-background-color: #c0c0c0;" text="Registrarse" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="49.0" right="49.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets left="49.0" />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets top="25.0" />
+                     </padding></VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</JFXTabPane>

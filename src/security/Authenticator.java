@@ -1,4 +1,3 @@
-
 package security;
 
 import static controller.Main.db;
@@ -9,7 +8,7 @@ public final class Authenticator {
     
     private Authenticator() {}
     
-    public static Object validate(String userID, String password, boolean isAdmin) {
+    public static Boolean validate(String userID, String password, boolean isAdmin) {
 
         if (isAdmin) {
             
@@ -17,9 +16,10 @@ public final class Authenticator {
 
             if (user != null) {
                 if (user.getPassword().equals(password)) {
-                    return (Administrator) user;
+                    return true;
                 }
             }
+            
         }
         else {
         
@@ -27,11 +27,11 @@ public final class Authenticator {
             
             if (user != null) {
                 if (user.getPassword().equals(password)) {
-                    return (Dermatologist) user;
+                    return true;
                 }
             }
             
         }
-        return null;
+        return false;
     }
 }

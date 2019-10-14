@@ -1,40 +1,49 @@
 package model.utilities;
 
+import static controller.Main.db;
 import model.Administrator;
 import model.Dermatologist;
 
 public class Session {
     
     private Object loggedUser;
-    private int sessionType;
+    private boolean isAdminSession; //Tipo de sesion
     
     public Object getLoggedUser() {
         
-        if (this.sessionType == 0) {
+        if (this.isAdminSession) {
             return (Dermatologist) loggedUser;
         } 
-        else if (this.sessionType == 1) {
+        else if (!this.isAdminSession) {
             return (Administrator) loggedUser;
         }
         else {
             return null;
         }
-        
     }
     
-    public void setLoggedUser(Object user, int sessionType) {
+    public void startSession(String rut, boolean isAdmin) {
+        
+        if (isAdmin) {
+            loggedUser = db.searchAdministrator(rut);
+        }
+        else {
+            loggedUser = db.searchDermatologist(rut);
+        }
+    }
+    
+    public void setLoggedUser(Object user) {
             this.loggedUser = user;
-            this.sessionType = sessionType;
     }
     
     //Retorna el tipo de sesión (administrador o dermatologo)
-    public int getSessionType() {
-        return sessionType;
+    public boolean getIsAdminSession() {
+        return isAdminSession;
     }
     
     //Establece el tipo de sesión (administrador o dermatologo)
-    public void setSessionType(int sessionType) {
-        this.sessionType = sessionType;
+    public void setIsAdminSession(boolean isAdmin) {
+        this.isAdminSession = isAdmin;
     }
     
 }
