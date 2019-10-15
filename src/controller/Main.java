@@ -24,7 +24,6 @@ public class Main extends Application{
         stage.setResizable(false);
         stage.sizeToScene();
         stage.show();
-        
     }
     
     public static void main(String[] args) throws IOException {

@@ -6,7 +6,7 @@ import model.Dermatologist;
 
 public final class Authenticator {
     
-    private Authenticator() {}
+    private Authenticator() { }
     
     public static Boolean validate(String userID, String password, boolean isAdmin) {
 
