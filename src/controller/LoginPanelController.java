@@ -5,13 +5,11 @@ import static controller.Main.session;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -31,27 +29,17 @@ public class LoginPanelController implements Initializable {
     
     /* Widgets y atributos asociados a tab de creación de cuenta*/
     @FXML 
-    private TextField registerFirstName, registerLastName, registerRut, registerEmail, registerYear;
+    private TextField registerFirstName, registerLastName, registerRut, registerEmail;
     @FXML
     private PasswordField registerPassword, registerRePassword;
     @FXML
     private Label registerNameError, registerBirthdayError, registerRutError, registerEmailError, registerPasswordError, registerRePasswordError;
     @FXML
-    private ComboBox<String> registerMonth;
-    @FXML
-    private ComboBox<Integer> registerDay;
+    private DatePicker registerBirthday;
     
     //Valida que registro de cuenta cumpla todos los requisitos
-    private final boolean[] checker = new boolean[9];
-    
-    
-    //Items para ComboBoxes
-    ObservableList<Integer> days = FXCollections.observableArrayList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
-                                                                    17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
-    
-    ObservableList<String> months = FXCollections.observableArrayList("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-                                                                      "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
-    
+    private final int[] checker = new int[8];
+
     //Acción de botón de inicio de sesión
     @FXML
     private void loginSubmit(ActionEvent e) throws IOException {
@@ -83,9 +71,17 @@ public class LoginPanelController implements Initializable {
     @FXML
     private void registerSubmit(ActionEvent e) {
         
-        //Inicializa checker, si todos los campos son true valida el registro.
-        for (int i = 0; i < 9; i++){
-            checker[i] = false;
+        /*  checker[0] = firstname
+            checker[1] = lastname
+            checker[2] = birthday
+            checker[3] = rut
+            checker[4] = email
+            checker[5] = password && rePassword
+        */
+        
+        //Inicializa checker, si todos los campos son 1 valida el registro.
+        for (int i = 0; i < 8; i++){
+            checker[i] = 0;
         }
         
         //Comprueba nombres y apellidos
@@ -97,97 +93,89 @@ public class LoginPanelController implements Initializable {
             
             //Marca checker como "true" y vuelve invisible error
             disableAlert(registerNameError);
-            checker[0] = true;
-            checker[1] = true;
+            checker[0] = 1;
+            checker[1] = 1;
         }
         
         //Comprueba fecha
-        if (registerYear.getText().isBlank()) {
-            
-            activateAlert(registerBirthdayError, "Fecha invalida");
+        if (registerBirthday.getValue() != null) {
+               disableAlert(registerBirthdayError);
         }
         else {
-            disableAlert(registerBirthdayError);
-            checker[2] = true;
-            checker[3] = true;
-            checker[4] = true;
-            
+            activateAlert(registerBirthdayError, "Fecha invalida");
         }
         
         //Comprueba rut
-        /*int response = Validator.rut(registerRut.getText());
+        checker[3] = 1;
+        int response = Validator.rut(registerRut.getText());
         
-        if (response == 1){
-            disableAlert(registerRutError);
-            checker[5] = true;
+        switch (response) {
+            case 1:
+                disableAlert(registerRutError);
+                checker[3] = 1;
+                break;
+            case 0:
+                //Marca checker como "true" y vuelve invisible el error
+                activateAlert(registerRutError, "Rut invalido");
+                break;
+            case -1:
+                activateAlert(registerRutError, "Formato incorrecto");
+                break;
+            default:
+                break;
         }
-        else if (response == 0){
-            //Marca checker como "true" y vuelve invisible el error
-            activateAlert(registerRutError, "Rut invalido");
-        }
-        else if (response == -1) {
-            activateAlert(registerRutError, "Formato incorrecto");
-        }*/
-        
-        
         
         //Comprueba correo electrónico
         if (registerEmail.getText().isBlank()) {
-            activateAlert(registerEmailError, "Campo vacío");
+            activateAlert(registerEmailError, "Campo obligatorio");
         }
         else {
             disableAlert(registerEmailError);
-            checker[6] = true;
+            checker[4] = 1;
         }
         
-        //Comprueba contraseña
-        if (registerPassword.getText().isBlank()) {
-            activateAlert(registerPasswordError, "Campo vacío");
-        }
-        else {
-            
-            disableAlert(registerPasswordError);
-            checker[7] = true;
-        }
-            
-        //Comprueba re-ingreso de contraseña
-        if (registerRePassword.getText().isBlank()) {
-            activateAlert(registerRePasswordError, "Campo vacío");
-            
-        }
-        else {
-            disableAlert(registerRePasswordError);
-            checker[8] = true;
-        }
+        //Comprueba contraseñas ingresadas
+        checker[5] = Validator.passwordStrength(registerPassword.getText());
         
-        for (int i = 0; i < 9; i++) {
-            if (!checker[i]) {
-                return;
-            }
-        }
-        
-        
-        
+        switch (checker[5]) {
+            case 1: //Contraseña admitida
+
+                disableAlert(registerPasswordError);
+                
+                //Comprueba que la contraseña re-ingresada no esté en blanco
+                if (Validator.checkBlank(registerRePassword.getText())) {
+                    activateAlert(registerRePasswordError, "Campo obligatorio");
+                    checker[5] = 0;
+                }
+                //Comprueba que ambas contraseñas sean iguales
+                else {
+                    if (Validator.checkEqualPasswords(registerPassword.getText(), registerRePassword.getText())) {
+                        checker[5] = 1;
+                    }
+                    else { //Contraseñas distintas
+                        activateAlert(registerRePasswordError, "Las contraseñas no coinciden");
+                        checker[5] = 0;
+                    }
+                }
+                break;
+            case 0: //Contraseña debil
+                activateAlert(registerPasswordError, "Debe incluir al menos una mayúscula,\nuna minúscula y un número.");
+                break;
+            case -1: //Contraseña corta
+                activateAlert(registerPasswordError, "Debe contener mínimo 8 caracteres");
+                break;
+            case -2: //Campo vacío
+                activateAlert(registerPasswordError, "Campo obligatorio");
+                break;
+            default:
+                break;
+        } 
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        //Inicializa ComboBoxes con fechas
-        registerMonth.setItems(months);
-        registerDay.setItems(days);
-        
-        //Inicializa largo máximo de entradas de texto
-        loginRut.setOnKeyTyped(event -> {
-            
-            int maxCharacters = 15;
-            if (loginRut.getText().length() > maxCharacters) {
-                loginRut.setText(loginRut.getText());
-            }
-        });
-        
     }
-    
     
     //Cambia texto de label y lo hace visible
     private void activateAlert(Label label, String alertText) {
@@ -206,5 +194,4 @@ public class LoginPanelController implements Initializable {
         }
         
     }
-    
 }
