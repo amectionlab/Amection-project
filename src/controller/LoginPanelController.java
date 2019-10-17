@@ -13,7 +13,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import security.Validator;
+import security.Validation;
 
 public class LoginPanelController implements Initializable {
     
@@ -38,84 +38,78 @@ public class LoginPanelController implements Initializable {
     private DatePicker registerBirthday;
     
     //Valida que registro de cuenta cumpla todos los requisitos
-    private final int[] checker = new int[8];
+    private final int[] checker = new int[6];
 
     //Acción de botón de inicio de sesión
     @FXML
     private void loginSubmit(ActionEvent e) throws IOException {
         
-        //Realiza una autenticacion para verificar si el usuario existe.
-        if (Authenticator.validate(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
+        int rutChecker  = Validation.checkRut(loginRut.getText());
+        
+        //Si el rut es valido realiza autenticación
+        if (rutChecker == 1) {
             
-            //Crea la sesión con el usuario encontrado
-            session.startSession(loginRut.getText(), loginIsAdmin.isSelected());
-            
-            //Designa a cual escena se cambiará
-            if (session.getIsAdminSession()) {
-                
-                //Cambia a panel de administrador
+            //Realiza una autenticacion para verificar si el usuario existe.
+            if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
+
+                //Crea la sesión con el usuario encontrado
+                session.startSession(loginRut.getText(), loginIsAdmin.isSelected());
+
+                //Designa a cual escena se cambiará
+                if (session.getIsAdminSession()) {
+                    //Cambia a panel de administrador
+                }
+                else {
+                    //Cambia a panel de dermatologo
+                }
             }
-            else {
-               
-                //Cambia a panel de dermatologo
-            }
-        } 
-        else {
-            
-            loginErrorText.setText("Rut y/o contraseña incorrecto/s.");
-            loginErrorText.setVisible(true);
         }
+        activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
     }
     
     //Acción de botón de registro de usuario
     @FXML
     private void registerSubmit(ActionEvent e) {
-        
-        /*  checker[0] = firstname
-            checker[1] = lastname
-            checker[2] = birthday
-            checker[3] = rut
-            checker[4] = email
-            checker[5] = password && rePassword
-        */
-        
+
         //Inicializa checker, si todos los campos son 1 valida el registro.
-        for (int i = 0; i < 8; i++){
+        for (int i = 0; i < 6; i++){
             checker[i] = 0;
         }
         
-        //Comprueba nombres y apellidos
-        if (registerFirstName.getText().isBlank() || registerLastName.getText().isBlank()) {
-            
-            activateAlert(registerNameError, "Campo/s vacío/s");
-        }
-        else {
-            
-            //Marca checker como "true" y vuelve invisible error
+        //Comprobación de nombres/apellidos y manipulación de errores
+        checker[0] = Validation.checkNamesField(registerFirstName.getText());
+        checker[1] = Validation.checkNamesField(registerLastName.getText());
+        
+        if (checker[0] == 1 && checker[1] == 1) {
             disableAlert(registerNameError);
-            checker[0] = 1;
-            checker[1] = 1;
+        }
+        else if (checker[0] == 0 || checker[1] == 0) {
+            activateAlert(registerNameError, "Solo puede ingresar caracteres alfabéticos");
+        }
+        else if (checker[0] == -1 || checker[1] == -1) {
+            activateAlert(registerNameError, "Uno de los campos no cumple el largo mínimo");
+        }
+        else if (checker[0] == -2 || checker[1] == -2) {
+            activateAlert(registerNameError, "Uno de los campos está vacío");
         }
         
-        //Comprueba fecha
+        //Comprobación de fecha y manipulación de errores
         if (registerBirthday.getValue() != null) {
-               disableAlert(registerBirthdayError);
+            disableAlert(registerBirthdayError);
+            checker[2] = 1;
         }
         else {
             activateAlert(registerBirthdayError, "Fecha invalida");
         }
         
-        //Comprueba rut
-        checker[3] = 1;
-        int response = Validator.rut(registerRut.getText());
+        //Comprobación de rut y manipulación de errores
+        checker[3] = Validation.checkRut(registerRut.getText());
         
-        switch (response) {
+        switch (checker[3]) {
             case 1:
                 disableAlert(registerRutError);
-                checker[3] = 1;
                 break;
             case 0:
-                //Marca checker como "true" y vuelve invisible el error
                 activateAlert(registerRutError, "Rut invalido");
                 break;
             case -1:
@@ -126,16 +120,25 @@ public class LoginPanelController implements Initializable {
         }
         
         //Comprueba correo electrónico
-        if (registerEmail.getText().isBlank()) {
-            activateAlert(registerEmailError, "Campo obligatorio");
-        }
-        else {
-            disableAlert(registerEmailError);
-            checker[4] = 1;
+        checker[4] = Validation.checkEmail(registerEmail.getText());
+        
+        switch (checker[4]) {
+            case 1:
+                disableAlert(registerEmailError);
+                break;
+            case 0:
+            case -1:
+                activateAlert(registerEmailError, "Correo inválido");
+                break;
+            case -2:
+                activateAlert(registerEmailError, "Campo obligatorio");
+                break;
+            default:
+                break;
         }
         
         //Comprueba contraseñas ingresadas
-        checker[5] = Validator.passwordStrength(registerPassword.getText());
+        checker[5] = Validation.checkPasswordStrength(registerPassword.getText());
         
         switch (checker[5]) {
             case 1: //Contraseña admitida
@@ -143,13 +146,13 @@ public class LoginPanelController implements Initializable {
                 disableAlert(registerPasswordError);
                 
                 //Comprueba que la contraseña re-ingresada no esté en blanco
-                if (Validator.checkBlank(registerRePassword.getText())) {
+                if (Validation.checkBlank(registerRePassword.getText())) {
                     activateAlert(registerRePasswordError, "Campo obligatorio");
                     checker[5] = 0;
                 }
                 //Comprueba que ambas contraseñas sean iguales
                 else {
-                    if (Validator.checkEqualPasswords(registerPassword.getText(), registerRePassword.getText())) {
+                    if (Validation.checkEqualPasswords(registerPassword.getText(), registerRePassword.getText())) {
                         checker[5] = 1;
                     }
                     else { //Contraseñas distintas
@@ -169,12 +172,21 @@ public class LoginPanelController implements Initializable {
                 break;
             default:
                 break;
-        } 
+        }
+        
+        //Comprueba que todas las validaciones e ingreso de datos fue exitoso
+        for (int i = 0; i < 8; i++) {
+            
+            if (checker[i] != 1) {
+                return;
+            }
+        }
+        
+        //Accion de registro acá
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
     }
     
     //Cambia texto de label y lo hace visible

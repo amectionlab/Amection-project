@@ -8,7 +8,10 @@ public final class Authenticator {
     
     private Authenticator() { }
     
-    public static Boolean validate(String userID, String password, boolean isAdmin) {
+    /*
+        Busca al usuario 
+    */
+    public static Boolean findForLogin(String userID, String password, boolean isAdmin) {
 
         if (isAdmin) {
             
@@ -34,4 +37,6 @@ public final class Authenticator {
         }
         return false;
     }
+    
+    
 }

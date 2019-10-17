@@ -31,12 +31,12 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="loginRut" promptText="Rut" />
-                        <PasswordField fx:id="loginPassword" promptText="Contraseña" />
-                        <CheckBox fx:id="loginIsAdmin" mnemonicParsing="false" text="Iniciar como administrador" />
+                        <TextField fx:id="loginRut" focusTraversable="false" promptText="Rut" />
+                        <PasswordField fx:id="loginPassword" focusTraversable="false" promptText="Contraseña" />
+                        <CheckBox fx:id="loginIsAdmin" focusTraversable="false" mnemonicParsing="false" text="Iniciar como administrador" />
                         <Label fx:id="loginErrorText" alignment="CENTER" contentDisplay="CENTER" prefWidth="380.0" textAlignment="CENTER" textFill="RED" visible="false" />
                         <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginSubmit" prefWidth="380.0" text="Iniciar sesión" />
-                        <Hyperlink fx:id="loginRecovery" text="¿Has olvidado tu contraseña?" />
+                        <Hyperlink fx:id="loginRecovery" focusTraversable="false" text="¿Has olvidado tu contraseña?" />
                      </children>
                   </VBox>
                </children>
@@ -59,8 +59,8 @@
                         </Label>
                         <HBox spacing="10.0">
                            <children>
-                              <TextField fx:id="registerFirstName" promptText="Nombre/s" />
-                              <TextField fx:id="registerLastName" promptText="Apellido/s" />
+                              <TextField fx:id="registerFirstName" focusTraversable="false" promptText="Nombre/s" />
+                              <TextField fx:id="registerLastName" focusTraversable="false" promptText="Apellido/s" />
                            </children>
                            <opaqueInsets>
                               <Insets />
@@ -69,19 +69,19 @@
                         <Label fx:id="registerNameError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
                         <VBox spacing="10.0">
                            <children>
-                              <DatePicker fx:id="registerBirthday" editable="false" prefWidth="356.0" promptText="Fecha de nacimiento" />
+                              <DatePicker fx:id="registerBirthday" editable="false" focusTraversable="false" prefWidth="356.0" promptText="Fecha de nacimiento" />
                               <Label fx:id="registerBirthdayError" alignment="CENTER" layoutX="100.0" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
                            </children>
                         </VBox>
                         <VBox spacing="10.0">
                            <children>
-                              <TextField fx:id="registerRut" promptText="Rut" />
+                              <TextField fx:id="registerRut" focusTraversable="false" promptText="Rut" />
                               <Label fx:id="registerRutError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
-                              <TextField fx:id="registerEmail" promptText="Correo electrónico" />
+                              <TextField fx:id="registerEmail" focusTraversable="false" promptText="Correo electrónico" />
                               <Label fx:id="registerEmailError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
-                              <PasswordField fx:id="registerPassword" promptText="Contraseña" />
+                              <PasswordField fx:id="registerPassword" focusTraversable="false" promptText="Contraseña" />
                               <Label fx:id="registerPasswordError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
-                              <PasswordField fx:id="registerRePassword" promptText="Re-ingrese contraseña" />
+                              <PasswordField fx:id="registerRePassword" focusTraversable="false" promptText="Re-ingrese contraseña" />
                               <Label fx:id="registerRePasswordError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
                            </children>
                         </VBox>
