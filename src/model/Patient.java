@@ -5,6 +5,10 @@ public class Patient extends Person{
     private String healthCoverage;
     private String nameHealthCoverage;
     
+    public Patient(String firstname, String lastname, String date, String rut, String gender, String mail, String phoneNumber, String address) {
+        super(firstname, lastname, date, rut, gender, mail, phoneNumber, address);
+    }
+    
     public Patient(String firstname, String lastname, String date, String rut, String gender, String mail, String phoneNumber, String address, String healthCoverage, String nameHealthCoverage) {
         super(firstname, lastname, date, rut, gender, mail, phoneNumber, address);
         this.healthCoverage = healthCoverage;

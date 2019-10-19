@@ -1,6 +1,6 @@
 package security;
 
-import static controller.Main.db;
+import static controller.Program.db;
 import model.Administrator;
 import model.Dermatologist;
 
@@ -8,9 +8,6 @@ public final class Authenticator {
     
     private Authenticator() { }
     
-    /*
-        Busca al usuario 
-    */
     public static Boolean findForLogin(String userID, String password, boolean isAdmin) {
 
         if (isAdmin) {
@@ -18,25 +15,23 @@ public final class Authenticator {
             Administrator user = db.searchAdministrator(userID);
 
             if (user != null) {
+                
                 if (user.getPassword().equals(password)) {
                     return true;
                 }
             }
-            
         }
         else {
         
             Dermatologist user = db.searchDermatologist(userID);
             
             if (user != null) {
+                
                 if (user.getPassword().equals(password)) {
                     return true;
                 }
             }
-            
         }
         return false;
     }
-    
-    
 }

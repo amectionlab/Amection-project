@@ -87,9 +87,9 @@ public class Database {
             while ((row = csvReader.readLine()) != null) {
                 
                 String[] data = row.split(",");
-                /*                             password  firstname  lastname  date    rut     gender    mail    phoneNumber  address path*/
-                Patient newPatient = new Patient(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], null);
-                this.addPatient(data[4], newPatient);
+                /*                                firstname  lastname  date   rut    gender   mail  phoneNumber  address*/
+                Patient newPatient = new Patient(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
+                this.addPatient(data[3], newPatient);
             }
         }
     }

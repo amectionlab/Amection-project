@@ -1,6 +1,6 @@
 package model.utilities;
 
-import static controller.Main.db;
+import static controller.Program.db;
 import model.Administrator;
 import model.Dermatologist;
 

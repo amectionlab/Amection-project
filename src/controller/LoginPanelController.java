@@ -1,19 +1,26 @@
 package controller;
 
 import security.Authenticator;
-import static controller.Main.session;
+import static controller.Program.session;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import security.Validation;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import model.Administrator;
+import model.Dermatologist;
+import security.Validator;
 
 public class LoginPanelController implements Initializable {
     
@@ -36,6 +43,8 @@ public class LoginPanelController implements Initializable {
     private Label registerNameError, registerBirthdayError, registerRutError, registerEmailError, registerPasswordError, registerRePasswordError;
     @FXML
     private DatePicker registerBirthday;
+    @FXML
+    private Label[] test = new Label[6];
     
     //Valida que registro de cuenta cumpla todos los requisitos
     private final int[] checker = new int[6];
@@ -44,11 +53,11 @@ public class LoginPanelController implements Initializable {
     @FXML
     private void loginSubmit(ActionEvent e) throws IOException {
         
-        int rutChecker  = Validation.checkRut(loginRut.getText());
+        //int rutChecker  = Validator.checkRut(loginRut.getText());
         
         //Si el rut es valido realiza autenticación
-        if (rutChecker == 1) {
-            
+        //if (rutChecker == 1) {
+            test[0].setText("asd");
             //Realiza una autenticacion para verificar si el usuario existe.
             if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
 
@@ -57,14 +66,28 @@ public class LoginPanelController implements Initializable {
 
                 //Designa a cual escena se cambiará
                 if (session.getIsAdminSession()) {
+                    
                     //Cambia a panel de administrador
+                    Administrator test = (Administrator) session.getLoggedUser();
+                    
+                    activateAlert(loginErrorText, test.getRut());
+                    return;
+                    
                 }
                 else {
                     //Cambia a panel de dermatologo
+                    Dermatologist test = (Dermatologist) session.getLoggedUser();
+
+                    activateAlert(loginErrorText, test.getRut());
+                    return;
                 }
+            }else {
+                activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
+                return;
             }
-        }
-        activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
+        //}
+        //activateAlert(loginErrorText, "Ingrese un rut válido");
+
     }
     
     //Acción de botón de registro de usuario
@@ -77,8 +100,8 @@ public class LoginPanelController implements Initializable {
         }
         
         //Comprobación de nombres/apellidos y manipulación de errores
-        checker[0] = Validation.checkNamesField(registerFirstName.getText());
-        checker[1] = Validation.checkNamesField(registerLastName.getText());
+        checker[0] = Validator.checkNamesField(registerFirstName.getText());
+        checker[1] = Validator.checkNamesField(registerLastName.getText());
         
         if (checker[0] == 1 && checker[1] == 1) {
             disableAlert(registerNameError);
@@ -103,7 +126,7 @@ public class LoginPanelController implements Initializable {
         }
         
         //Comprobación de rut y manipulación de errores
-        checker[3] = Validation.checkRut(registerRut.getText());
+        checker[3] = Validator.checkRut(registerRut.getText());
         
         switch (checker[3]) {
             case 1:
@@ -120,7 +143,7 @@ public class LoginPanelController implements Initializable {
         }
         
         //Comprueba correo electrónico
-        checker[4] = Validation.checkEmail(registerEmail.getText());
+        checker[4] = Validator.checkEmail(registerEmail.getText());
         
         switch (checker[4]) {
             case 1:
@@ -138,7 +161,7 @@ public class LoginPanelController implements Initializable {
         }
         
         //Comprueba contraseñas ingresadas
-        checker[5] = Validation.checkPasswordStrength(registerPassword.getText());
+        checker[5] = Validator.checkPasswordStrength(registerPassword.getText());
         
         switch (checker[5]) {
             case 1: //Contraseña admitida
@@ -146,13 +169,13 @@ public class LoginPanelController implements Initializable {
                 disableAlert(registerPasswordError);
                 
                 //Comprueba que la contraseña re-ingresada no esté en blanco
-                if (Validation.checkBlank(registerRePassword.getText())) {
+                if (Validator.checkBlank(registerRePassword.getText())) {
                     activateAlert(registerRePasswordError, "Campo obligatorio");
                     checker[5] = 0;
                 }
                 //Comprueba que ambas contraseñas sean iguales
                 else {
-                    if (Validation.checkEqualPasswords(registerPassword.getText(), registerRePassword.getText())) {
+                    if (Validator.checkEqualPasswords(registerPassword.getText(), registerRePassword.getText())) {
                         checker[5] = 1;
                     }
                     else { //Contraseñas distintas
@@ -187,6 +210,7 @@ public class LoginPanelController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
     }
     
     //Cambia texto de label y lo hace visible
@@ -206,4 +230,16 @@ public class LoginPanelController implements Initializable {
         }
         
     }
+
+    private void newWindow(String title) throws IOException {
+        
+        Parent root = FXMLLoader.load(getClass().getResource("../view/adminPanel.fxml"));
+        Scene scene = new Scene(root);
+        
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(title);
+        stage.show();
+    }
+    
 }

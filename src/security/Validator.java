@@ -1,8 +1,8 @@
 package security;
 
-public final class Validation {
+public final class Validator {
     
-    private Validation() {}
+    private Validator() {}
    
     /*      -VALIDIA ENTRADAS ILEGALES-
      * Comprueba cadenas vacias o nulas
@@ -102,7 +102,6 @@ public final class Validation {
         return password.equals(rePassword);
     }
     
-    
     /*           -VALIDA RUT-
      * Valida rut en formato (xxxxxxxx-x)
      * return  1: Digito verificador y formato correcto
@@ -185,12 +184,6 @@ public final class Validation {
         //Formato incorrecto
         return -1;
     }
-    
-
-    private boolean checkRutDigit(String rut) {
-        return false;
-    }
-    
     
 }
 
