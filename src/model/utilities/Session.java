@@ -12,10 +12,10 @@ public class Session {
     public Object getLoggedUser() {
         
         if (this.isAdminSession) {
-            return (Dermatologist) loggedUser;
+            return (Administrator) loggedUser;
         } 
         else if (!this.isAdminSession) {
-            return (Administrator) loggedUser;
+            return (Dermatologist) loggedUser;
         }
         else {
             return null;
@@ -25,9 +25,11 @@ public class Session {
     public void startSession(String rut, boolean isAdmin) {
         
         if (isAdmin) {
+            setIsAdminSession(isAdmin);
             loggedUser = db.searchAdministrator(rut);
         }
         else {
+            setIsAdminSession(isAdmin);
             loggedUser = db.searchDermatologist(rut);
         }
     }

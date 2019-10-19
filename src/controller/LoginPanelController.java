@@ -16,9 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import model.Administrator;
 import model.Dermatologist;
 import security.Validator;
 
@@ -43,8 +41,6 @@ public class LoginPanelController implements Initializable {
     private Label registerNameError, registerBirthdayError, registerRutError, registerEmailError, registerPasswordError, registerRePasswordError;
     @FXML
     private DatePicker registerBirthday;
-    @FXML
-    private Label[] test = new Label[6];
     
     //Valida que registro de cuenta cumpla todos los requisitos
     private final int[] checker = new int[6];
@@ -57,7 +53,6 @@ public class LoginPanelController implements Initializable {
         
         //Si el rut es valido realiza autenticación
         //if (rutChecker == 1) {
-            test[0].setText("asd");
             //Realiza una autenticacion para verificar si el usuario existe.
             if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
 
@@ -68,22 +63,12 @@ public class LoginPanelController implements Initializable {
                 if (session.getIsAdminSession()) {
                     
                     //Cambia a panel de administrador
-                    Administrator test = (Administrator) session.getLoggedUser();
-                    
-                    activateAlert(loginErrorText, test.getRut());
-                    return;
-                    
                 }
                 else {
                     //Cambia a panel de dermatologo
-                    Dermatologist test = (Dermatologist) session.getLoggedUser();
-
-                    activateAlert(loginErrorText, test.getRut());
-                    return;
                 }
             }else {
                 activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
-                return;
             }
         //}
         //activateAlert(loginErrorText, "Ingrese un rut válido");
@@ -210,7 +195,6 @@ public class LoginPanelController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }
     
     //Cambia texto de label y lo hace visible

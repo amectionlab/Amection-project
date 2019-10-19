@@ -43,7 +43,4 @@ public class DisplayPanel {
         newDisplay.setDisable(false);
         currentDisplay.setVisible(true);
     }
-            
-    
-    
 }

@@ -5,7 +5,8 @@
         <group>
             <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/LoginPanelController.java</file>
             <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/resources/dermatologists.csv</file>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/security/Authenticator.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/resources/patients.csv</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/model/utilities/Session.java</file>
         </group>
     </open-files>
 </project-private>
