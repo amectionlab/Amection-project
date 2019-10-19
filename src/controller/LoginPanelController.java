@@ -11,13 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Dermatologist;
 import security.Validator;
 
 public class LoginPanelController implements Initializable {
@@ -41,6 +41,8 @@ public class LoginPanelController implements Initializable {
     private Label registerNameError, registerBirthdayError, registerRutError, registerEmailError, registerPasswordError, registerRePasswordError;
     @FXML
     private DatePicker registerBirthday;
+    @FXML
+    private Button loginButton;
     
     //Valida que registro de cuenta cumpla todos los requisitos
     private final int[] checker = new int[6];
@@ -65,9 +67,13 @@ public class LoginPanelController implements Initializable {
                     //Cambia a panel de administrador
                 }
                 else {
+                    
                     //Cambia a panel de dermatologo
+                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                    newScene(currentStage, "../view/adminPanel.fxml");
                 }
-            }else {
+            }
+            else {
                 activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
             }
         //}
@@ -214,16 +220,17 @@ public class LoginPanelController implements Initializable {
         }
         
     }
-
-    private void newWindow(String title) throws IOException {
+    
+    //Crea nueva escena con archivo FXML
+    private void newScene(Stage currentStage, String path) throws IOException {
         
-        Parent root = FXMLLoader.load(getClass().getResource("../view/adminPanel.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        
         Scene scene = new Scene(root);
         
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle(title);
-        stage.show();
+        currentStage.setScene(scene);
+        currentStage.show();
+        currentStage.setResizable(false);
+        currentStage.centerOnScreen();
     }
-    
 }
