@@ -55,6 +55,7 @@ public class LoginPanelController implements Initializable {
         
         //Si el rut es valido realiza autenticación
         //if (rutChecker == 1) {
+        
             //Realiza una autenticacion para verificar si el usuario existe.
             if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
 
@@ -62,15 +63,13 @@ public class LoginPanelController implements Initializable {
                 session.startSession(loginRut.getText(), loginIsAdmin.isSelected());
 
                 //Designa a cual escena se cambiará
-                if (session.getIsAdminSession()) {
+                if (session.isAdminSession()) {
                     
                     //Cambia a panel de administrador
-                }
-                else {
-                    
-                    //Cambia a panel de dermatologo
                     Stage currentStage = (Stage) loginButton.getScene().getWindow();
                     newScene(currentStage, "../view/adminPanel.fxml");
+                }
+                else {
                 }
             }
             else {
@@ -203,6 +202,7 @@ public class LoginPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }
     
+    
     //Cambia texto de label y lo hace visible
     private void activateAlert(Label label, String alertText) {
         
@@ -229,8 +229,10 @@ public class LoginPanelController implements Initializable {
         Scene scene = new Scene(root);
         
         currentStage.setScene(scene);
+        currentStage.setResizable(true);
+        currentStage.sizeToScene();
+        currentStage.centerOnScreen();
         currentStage.show();
         currentStage.setResizable(false);
-        currentStage.centerOnScreen();
     }
 }

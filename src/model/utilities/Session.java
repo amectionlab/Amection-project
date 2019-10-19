@@ -39,7 +39,7 @@ public class Session {
     }
     
     //Retorna el tipo de sesión (administrador o dermatologo)
-    public boolean getIsAdminSession() {
+    public boolean isAdminSession() {
         return isAdminSession;
     }
     

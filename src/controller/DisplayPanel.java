@@ -34,13 +34,13 @@ public class DisplayPanel {
         
         //Obtiene panel actual desde la lista
         AnchorPane currentDisplay = (AnchorPane) this.displayList.get(currentIndex);
-        currentDisplay.setDisable(true);
         currentDisplay.setVisible(false);
+        currentDisplay.setDisable(true);
         
         //Obtiene nuevo panel 
-        AnchorPane newDisplay = (AnchorPane) this.displayList.get(currentIndex);
+        AnchorPane newDisplay = (AnchorPane) this.displayList.get(index);
         setCurrentIndex(index);
+        newDisplay.setVisible(true);
         newDisplay.setDisable(false);
-        currentDisplay.setVisible(true);
     }
 }

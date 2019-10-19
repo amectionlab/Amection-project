@@ -24,7 +24,7 @@ public class Database {
     //Invoca metodos privados de inicializacion de colecciones
     public void initDatabase() throws IOException {
         
-        //initAdministratorCollection("/ruta/de/ejemplo");
+        initAdministratorCollection("src/resources/administrators.csv");
         initDermatologistCollection("src/resources/dermatologists.csv");
         initPatientCollection("src/resources/patients.csv");
     }
