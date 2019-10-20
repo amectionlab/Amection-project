@@ -66,7 +66,7 @@
             </ImageView>
         </items>
       </ToolBar>
-      <AnchorPane fx:id="profilePane" layoutX="212.0" layoutY="100.0" prefHeight="700.0" prefWidth="1000.0" visible="false">
+      <AnchorPane fx:id="profilePane" layoutX="212.0" layoutY="100.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
             <Label alignment="CENTER" layoutY="30.0" prefHeight="10.0" prefWidth="1000.0" text="INFORMACION DE USUARIO">
                <font>
@@ -165,7 +165,7 @@
             </HBox>
          </children></AnchorPane>
       <AnchorPane fx:id="adminsPane" layoutX="212.0" layoutY="100.0" prefHeight="700.0" prefWidth="1000.0" visible="false" />
-      <AnchorPane fx:id="dermsPane" layoutX="200.0" layoutY="100.0" prefHeight="700.0" prefWidth="1000.0">
+      <AnchorPane fx:id="dermsPane" layoutX="200.0" layoutY="100.0" prefHeight="700.0" prefWidth="1000.0" visible="false">
          <children>
             <ScrollPane layoutX="14.0" layoutY="7.0" prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>

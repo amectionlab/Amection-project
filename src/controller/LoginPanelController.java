@@ -62,15 +62,18 @@ public class LoginPanelController implements Initializable {
 
                 //Crea la sesión con el usuario encontrado
                 session.startSession(loginRut.getText(), loginIsAdmin.isSelected());
-
+                Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                
                 //Designa a cual escena se cambiará
                 if (session.isAdminSession()) {
                     
                     //Cambia a panel de administrador
-                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
                     newScene(currentStage, "../view/adminPanel.fxml");
                 }
                 else {
+                    
+                    //Cambia a panel de dermatologo
+                    newScene(currentStage, "../view/DermatologistPanel.fxml");
                 }
             }
             else {
