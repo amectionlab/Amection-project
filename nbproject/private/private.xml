@@ -12,12 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/AdminPanelController.java</file>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/LoginPanelController.java</file>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/DisplayPanel.java</file>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/model/utilities/Database.java</file>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/view/loginPanel.fxml</file>
-            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/Program.java</file>
+            <file>file:/home/ecinai/git/folder1/Amection-project/src/controller/DermatologistPanelController.java</file>
+            <file>file:/home/ecinai/git/folder1/Amection-project/src/model/Person.java</file>
+            <file>file:/home/ecinai/git/folder1/Amection-project/src/controller/AdminPanelController.java</file>
+            <file>file:/home/ecinai/git/folder1/Amection-project/src/model/utilities/Session.java</file>
         </group>
     </open-files>
 </project-private>
