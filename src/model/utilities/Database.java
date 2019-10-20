@@ -109,9 +109,10 @@ public class Database {
         
         FileWriter file = null;
         PrintWriter pw = null;
+        
         try
         {
-            file = new FileWriter("src/resources/dermatologist.csv");
+            file = new FileWriter("src/resources/administrators.csv");
             pw = new PrintWriter(file);
 
             /* Actualiza base de datos de dermatologos */

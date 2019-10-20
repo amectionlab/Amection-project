@@ -67,12 +67,8 @@ public class LoginPanelController implements Initializable {
                 if (session.isAdminSession()) {
                     
                     //Cambia a panel de administrador
-                    
-                    /*debug only*/
-                    db.saveDbToFile();
-
-                    //Stage currentStage = (Stage) loginButton.getScene().getWindow();
-                    //newScene(currentStage, "../view/adminPanel.fxml");
+                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                    newScene(currentStage, "../view/adminPanel.fxml");
                 }
                 else {
                 }
