@@ -55,7 +55,7 @@ abstract class Person {
         return gender;
     }
     
-    public String getMail() {
+    public String getEmail() {
         return mail;
     }
     
@@ -87,7 +87,7 @@ abstract class Person {
         this.gender = gender;
     }
     
-    public void setMail(String mail) {
+    public void setEmail(String mail) {
         this.mail = mail;
     }
     

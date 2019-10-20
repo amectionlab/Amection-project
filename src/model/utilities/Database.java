@@ -2,7 +2,13 @@ package model.utilities;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import model.collections.*;
 import model.Administrator;
 import model.Dermatologist;
@@ -71,7 +77,7 @@ public class Database {
                 dermDatabase.addToCollection(data[4], dermatologist);
             }
         }
-    }
+    } 
     
     /* 
      * Inicializa collecion de pacientes
@@ -91,6 +97,52 @@ public class Database {
                 Patient newPatient = new Patient(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]);
                 this.addPatient(data[3], newPatient);
             }
+        }
+    } 
+    
+    /*
+     *      -GUARDA ESTADO ACTUAL DE LA BASE DE DATOS CARGADA EN MEMORIA-
+     * Return true:  Si logra abrir el archivo en modo escritura y guardar
+     * Return false: Error al abrir el archivo o nada que guardar.
+     */
+    public void saveDbToFile() {
+        
+        FileWriter file = null;
+        PrintWriter pw = null;
+        try
+        {
+            file = new FileWriter("src/resources/dermatologist.csv");
+            pw = new PrintWriter(file);
+
+            /* Actualiza base de datos de dermatologos */
+            HashMap data = adminDatabase.getCollection();
+            
+            //
+            Iterator<Map.Entry<String, Object>> entries = data.entrySet().iterator();
+            while (entries.hasNext()) {
+                
+                Map.Entry<String, Object> entry = entries.next();
+                
+                Administrator user = (Administrator) entry.getValue();
+                
+                //Recopila datos de usuario
+                String userData = user.getPassword() + "," + user.getFirstname() + "," + user.getLastname() + "," + user.getDate() + "," + user.getRut() + "," + user.getGender() + "," + user.getEmail() + "," + user.getPhoneNumber() + "," + user.getAddress();
+                pw.println(userData);
+            }
+            
+        } 
+        catch (IOException e) { 
+        } 
+        finally {
+            
+           try {
+           // Nuevamente aprovechamos el finally para 
+           // asegurarnos que se cierra el fichero.
+           if (null != file)
+              file.close();
+           } 
+           catch (IOException e2) {
+           }
         }
     }
     

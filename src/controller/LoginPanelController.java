@@ -1,6 +1,7 @@
 package controller;
 
 import security.Authenticator;
+import static controller.Program.db;
 import static controller.Program.session;
 import java.io.IOException;
 import java.net.URL;
@@ -55,7 +56,7 @@ public class LoginPanelController implements Initializable {
         
         //Si el rut es valido realiza autenticación
         //if (rutChecker == 1) {
-        
+           
             //Realiza una autenticacion para verificar si el usuario existe.
             if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
 
@@ -66,8 +67,12 @@ public class LoginPanelController implements Initializable {
                 if (session.isAdminSession()) {
                     
                     //Cambia a panel de administrador
-                    Stage currentStage = (Stage) loginButton.getScene().getWindow();
-                    newScene(currentStage, "../view/adminPanel.fxml");
+                    
+                    /*debug only*/
+                    db.saveDbToFile();
+
+                    //Stage currentStage = (Stage) loginButton.getScene().getWindow();
+                    //newScene(currentStage, "../view/adminPanel.fxml");
                 }
                 else {
                 }

@@ -24,4 +24,11 @@ abstract class Collection {
     public Object selectFromCollection(String key) {
         return this.collection.get(key);
     }
+    
+    public HashMap getCollection() {
+        return this.collection;
+    }
+    public int getSizeCollection() {
+        return this.collection.size();
+    }
 }
