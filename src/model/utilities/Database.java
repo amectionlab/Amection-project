@@ -108,7 +108,7 @@ public class Database {
     public void saveDbToFile() {
         
         FileWriter file = null;
-        PrintWriter pw = null;
+        PrintWriter pw;
         
         try
         {

@@ -62,6 +62,8 @@ public class LoginPanelController implements Initializable {
 
                 //Crea la sesión con el usuario encontrado
                 session.startSession(loginRut.getText(), loginIsAdmin.isSelected());
+                
+                //
                 Stage currentStage = (Stage) loginButton.getScene().getWindow();
                 
                 //Designa a cual escena se cambiará
@@ -233,10 +235,11 @@ public class LoginPanelController implements Initializable {
         Scene scene = new Scene(root);
         
         currentStage.setScene(scene);
-        currentStage.setResizable(true);
-        currentStage.sizeToScene();
+        //currentStage.sizeToScene();
+        currentStage.setHeight(1200);
+        currentStage.setHeight(800);
         currentStage.centerOnScreen();
         currentStage.show();
-        currentStage.setResizable(false);
+        currentStage.setResizable(true);
     }
 }

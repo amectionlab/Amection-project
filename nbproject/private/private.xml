@@ -12,10 +12,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ecinai/git/folder1/Amection-project/src/controller/DermatologistPanelController.java</file>
-            <file>file:/home/ecinai/git/folder1/Amection-project/src/model/Person.java</file>
-            <file>file:/home/ecinai/git/folder1/Amection-project/src/controller/AdminPanelController.java</file>
-            <file>file:/home/ecinai/git/folder1/Amection-project/src/model/utilities/Session.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/AdminPanelController.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/security/Validator.java</file>
         </group>
     </open-files>
 </project-private>

@@ -40,7 +40,7 @@ public class Program extends Application{
         //Ajusta ventana a la escena
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         
         //Muestra ventana principal
         primaryStage.show();
