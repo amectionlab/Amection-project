@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import security.Validator;
 import controller.utilities.FXUtils;
 import javafx.scene.paint.Color;
+import model.Administrator;
 
 public class LoginPanelController implements Initializable {
     
@@ -70,15 +71,15 @@ public class LoginPanelController implements Initializable {
     //Acción de botón de inicio de sesión
     @FXML
     private void loginSubmit(ActionEvent e) throws IOException {
-        
+
         //int rutChecker  = Validator.checkRut(loginRut.getText());
         
         //Si el rut es valido realiza autenticación
         //if (rutChecker == 1) {
-           
+
             //Realiza una autenticacion para verificar si el usuario existe.
             if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
-
+                
                 //Crea la sesión con el usuario encontrado
                 session.startSession(loginRut.getText(), loginIsAdmin.isSelected());
                 

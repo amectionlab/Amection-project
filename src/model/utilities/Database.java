@@ -48,10 +48,10 @@ public class Database {
             while ((row = csvReader.readLine()) != null) {
                 
                 String[] data = row.split(",");
-                /*                                           password  firstname lastname  date      rut    gender   mail   phoneNumber address */
+                /*                                               firstname lastname  date      rut    gender   mail   phoneNumber address  password  */
                 Administrator administrator = new Administrator(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
                 
-                adminDatabase.addToCollection(data[4], administrator);
+                adminDatabase.addToCollection(data[3], administrator);
             }
         }
     }   
@@ -70,10 +70,10 @@ public class Database {
             while ((row = csvReader.readLine()) != null) {
                 
                 String[] data = row.split(",");
-                /*                                            password  firstname lastname  date      rut    gender   mail   phoneNumber address */
+                /*                                             firstname lastname  date      rut    gender   mail   phoneNumber address password */
                 Dermatologist dermatologist = new Dermatologist(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
                 
-                dermDatabase.addToCollection(data[4], dermatologist);
+                dermDatabase.addToCollection(data[3], dermatologist);
             }
         }
     } 
@@ -153,7 +153,7 @@ public class Database {
                 Administrator user = (Administrator) entry.getValue();
                 
                 //Recopila datos de usuario
-                String userData = user.getPassword() + "," + user.getFirstname() + "," + user.getLastname() + "," + user.getDate() + "," + user.getRut() + "," + user.getGender() + "," + user.getEmail() + "," + user.getPhoneNumber() + "," + user.getAddress();
+                String userData = user.getFirstname() + "," + user.getLastname() + "," + user.getDate() + "," + user.getRut() + "," + user.getGender() + "," + user.getEmail() + "," + user.getPhoneNumber() + "," + user.getAddress() + "," + user.getPassword();
                 pw.println(userData);
             }
             
