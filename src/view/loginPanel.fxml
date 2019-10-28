@@ -80,14 +80,14 @@
                               <TextField fx:id="registerEmail" focusTraversable="false" promptText="Correo electrónico" />
                               <Label fx:id="registerEmailError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
                               <PasswordField fx:id="registerPassword" focusTraversable="false" promptText="Contraseña" />
-                              <Label fx:id="registerPasswordError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
+                              <Label fx:id="registerPasswordError" alignment="CENTER" prefWidth="358.0" text="error" textFill="SILVER" />
                               <PasswordField fx:id="registerRePassword" focusTraversable="false" promptText="Re-ingrese contraseña" />
                               <Label fx:id="registerRePasswordError" alignment="CENTER" prefWidth="358.0" text="Error" textFill="RED" visible="false" />
+                              <Button fx:id="registerButton" mnemonicParsing="false" onAction="#registerSubmit" prefWidth="358.0" text="Registrarse" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <Button fx:id="registerButton" layoutX="49.0" layoutY="460.0" mnemonicParsing="false" onAction="#registerSubmit" prefWidth="358.0" text="Registrarse" />
                </children>
             </AnchorPane>
       </content>

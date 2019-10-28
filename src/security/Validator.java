@@ -54,7 +54,7 @@ public final class Validator {
         if (checkBlank(email)) {
             
             //Comprueba largo mínimo y máximo
-            if (email.matches("(.{6,35})")) {
+            if (email.matches("(.{6,255})")) {
                 
                 //Formato correo electronico: ^xxxxxx@xxxx.xxx.xxx$
                 if (email.matches("^[^\\ ()<>@,;:\\\"\\'\\[\\]ç%&]+@(([^\\ ()<>@,.;:\\\"\\'\\[\\]ç%&]+)\\.){1,2}[a-zA-Z]{2,}$")) {
@@ -80,10 +80,10 @@ public final class Validator {
         if (checkBlank(password)) {
             
             //Valida largo mínimo de la contraseña
-            if (password.matches(".{8,}")) {
+            if (password.matches(".{8,128}")) {
                 
                 //Comprueba que la contraseña ingresada cumpla con la expresión regular.
-                if (password.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])")) {
+                if (password.matches("^.*(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$")) {
                     return 1; //Contraseña admitida
                 } 
                 return 0; //Contraseña debil

@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Map.Entry;
 import model.collections.*;
 import model.Administrator;
 import model.Dermatologist;
@@ -36,7 +35,7 @@ public class Database {
     }
     
     /* 
-     * Inicializa collecion de administradores
+     *      -Inicializa collecion de administradores-
      * Param: string con la ruta del fichero
      * Return: true si la operacion es exitosa, false si falla. 
     */
@@ -58,7 +57,7 @@ public class Database {
     }   
     
     /* 
-     * Inicializa collecion de dermatologos
+     *      -Inicializa collecion de dermatologos-
      * Param: string con la ruta del fichero
      * Return: true si la operacion es exitosa, false si falla.
     */
@@ -80,7 +79,7 @@ public class Database {
     } 
     
     /* 
-     * Inicializa collecion de pacientes
+     *      -Inicializa collecion de pacientes-
      * Param: string con la ruta del fichero
      * Return: true si la operacion es exitosa, false si falla. 
     */
@@ -100,11 +99,38 @@ public class Database {
         }
     } 
     
+    
+    /*
+     *      -Crea nuevo admin/dermatologo/paciente
+     * Param typeOf: tipo de usuario a crear 0:admin, 1:derm, 2:paciente
+     * Params : Datos necesarios para constructor de nuevo usuario a crear
+    */
+    public boolean addNew(int typeOf, String firstname, String lastname, String date, String rut, String gender, String mail, String phoneNumber, String address, String password) {
+        
+        switch (typeOf) {
+            case 0:
+                //EN CONSTRUCCION
+                return true;
+            case 1:
+                Dermatologist newDermatologist = new Dermatologist(firstname, lastname, date, rut, gender, mail, phoneNumber, address, password);
+                this.addDermatologist(rut, newDermatologist);
+                this.saveDbToFile();
+                return true;
+            case 2:
+                //EN CONSTRUCCION
+                return true;
+            default:
+                break;
+        }
+        
+        return false;
+    }
+    
     /*
      *      -GUARDA ESTADO ACTUAL DE LA BASE DE DATOS CARGADA EN MEMORIA-
      * Return true:  Si logra abrir el archivo en modo escritura y guardar
      * Return false: Error al abrir el archivo o nada que guardar.
-     */
+    */
     public void saveDbToFile() {
         
         FileWriter file = null;

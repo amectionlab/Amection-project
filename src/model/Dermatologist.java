@@ -7,7 +7,7 @@ public class Dermatologist extends Person{
     private String password;
     private final PatientCollection patients;
 
-    public Dermatologist(String password, String firstname, String lastname, String date, String rut, String gender, String mail, String phoneNumber, String address) {
+    public Dermatologist(String firstname, String lastname, String date, String rut, String gender, String mail, String phoneNumber, String address, String password) {
         
         super(firstname, lastname, date, rut, gender, mail, phoneNumber, address);
         this.password = password;

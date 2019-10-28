@@ -13,7 +13,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/AdminPanelController.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/LoginPanelController.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/controller/utilities/FXUtils.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/model/Administrator.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/model/DoctorVisit.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/resources/dermatologists.csv</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/model/utilities/Database.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/resources/administrators.csv</file>
             <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/security/Validator.java</file>
+            <file>file:/home/bkdestroy/NetBeansProjects/Amection-project/src/model/Dermatologist.java</file>
         </group>
     </open-files>
 </project-private>
