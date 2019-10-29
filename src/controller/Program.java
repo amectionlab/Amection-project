@@ -37,6 +37,9 @@ public class Program extends Application{
         Parent root = FXMLLoader.load(getClass().getResource("../view/loginPanel.fxml"));
         Scene scene = new Scene(root);
         
+        String css = this.getClass().getResource("../resources/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        
         //Ajusta ventana a la escena
         primaryStage.setScene(scene);
         primaryStage.sizeToScene();

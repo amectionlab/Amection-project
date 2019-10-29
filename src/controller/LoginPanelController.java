@@ -20,9 +20,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import security.Validator;
-import controller.utilities.FXUtils;
+import controller.utilities.FXUtil;
 import javafx.scene.paint.Color;
-import model.Administrator;
 
 public class LoginPanelController implements Initializable {
     
@@ -55,17 +54,17 @@ public class LoginPanelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         //Designa cantidad maxima de caracteres
-        FXUtils.addTextLimiter(loginRut, 10);
-        FXUtils.addTextLimiter(loginPassword, 128);
-        FXUtils.addTextLimiter(registerFirstName, 45);
-        FXUtils.addTextLimiter(registerLastName, 45);
-        FXUtils.addTextLimiter(registerRut, 10);
-        FXUtils.addTextLimiter(registerEmail, 255);
-        FXUtils.addTextLimiter(registerPassword, 128);
-        FXUtils.addTextLimiter(registerRePassword, 128);
+        FXUtil.addTextLimiter(loginRut, 10);
+        FXUtil.addTextLimiter(loginPassword, 128);
+        FXUtil.addTextLimiter(registerFirstName, 45);
+        FXUtil.addTextLimiter(registerLastName, 45);
+        FXUtil.addTextLimiter(registerRut, 10);
+        FXUtil.addTextLimiter(registerEmail, 255);
+        FXUtil.addTextLimiter(registerPassword, 128);
+        FXUtil.addTextLimiter(registerRePassword, 128);
         
         //Activa etiqueta con politica de contraseña
-        FXUtils.activateAlert(registerPasswordError, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
+        FXUtil.activateAlert(registerPasswordError, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
     }
     
     //Acción de botón de inicio de sesión
@@ -75,7 +74,7 @@ public class LoginPanelController implements Initializable {
         //int rutChecker  = Validator.checkRut(loginRut.getText());
         
         //Si el rut es valido realiza autenticación
-        //if (rutChecker == 1) {
+        //if (rutChecker == 1) {    
 
             //Realiza una autenticacion para verificar si el usuario existe.
             if (Authenticator.findForLogin(loginRut.getText(), loginPassword.getText(), loginIsAdmin.isSelected())) {
@@ -99,7 +98,7 @@ public class LoginPanelController implements Initializable {
                 }
             }
             else {
-                FXUtils.activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
+                FXUtil.activateAlert(loginErrorText, "Rut y/o contraseña incorrecto/s.");
             }
         //}
         //activateAlert(loginErrorText, "Ingrese un rut válido");
@@ -120,25 +119,25 @@ public class LoginPanelController implements Initializable {
         checker[1] = Validator.checkNamesField(registerLastName.getText());
         
         if (checker[0] == 1 && checker[1] == 1) {
-            FXUtils.disableAlert(registerNameError);
+            FXUtil.disableAlert(registerNameError);
         }
         else if (checker[0] == 0 || checker[1] == 0) {
-            FXUtils.activateAlert(registerNameError, "Solo puede ingresar caracteres alfabéticos");
+            FXUtil.activateAlert(registerNameError, "Solo puede ingresar caracteres alfabéticos");
         }
         else if (checker[0] == -1 || checker[1] == -1) {
-            FXUtils.activateAlert(registerNameError, "Uno de los campos no cumple el largo mínimo");
+            FXUtil.activateAlert(registerNameError, "Uno de los campos no cumple el largo mínimo");
         }
         else if (checker[0] == -2 || checker[1] == -2) {
-            FXUtils.activateAlert(registerNameError, "Uno de los campos está vacío");
+            FXUtil.activateAlert(registerNameError, "Uno de los campos está vacío");
         }
         
         //Comprobación de fecha y manipulación de errores
         if (registerBirthday.getValue() != null) {
-            FXUtils.disableAlert(registerBirthdayError);
+            FXUtil.disableAlert(registerBirthdayError);
             checker[2] = 1;
         }
         else {
-            FXUtils.activateAlert(registerBirthdayError, "Fecha invalida");
+            FXUtil.activateAlert(registerBirthdayError, "Fecha invalida");
         }
         
         //Comprobación de rut y manipulación de errores
@@ -147,18 +146,18 @@ public class LoginPanelController implements Initializable {
         switch (checker[3]) {
             case 1:
                 if (db.searchDermatologist(registerRut.getText()) != null) {
-                    FXUtils.activateAlert(registerRutError, "Ya existe una cuenta con este rut");
+                    FXUtil.activateAlert(registerRutError, "Ya existe una cuenta con este rut");
                     checker[3] = -2; //Para invalidarlo
                 }
                 else {
-                    FXUtils.disableAlert(registerRutError);
+                    FXUtil.disableAlert(registerRutError);
                 }
                 break;
             case 0:
-                FXUtils.activateAlert(registerRutError, "Rut invalido");
+                FXUtil.activateAlert(registerRutError, "Rut invalido");
                 break;
             case -1:
-                FXUtils.activateAlert(registerRutError, "Formato incorrecto");
+                FXUtil.activateAlert(registerRutError, "Formato incorrecto");
                 break;
             default:
                 break;
@@ -169,14 +168,14 @@ public class LoginPanelController implements Initializable {
         
         switch (checker[4]) {
             case 1:
-                FXUtils.disableAlert(registerEmailError);
+                FXUtil.disableAlert(registerEmailError);
                 break;
             case 0:
             case -1:
-                FXUtils.activateAlert(registerEmailError, "Correo inválido");
+                FXUtil.activateAlert(registerEmailError, "Correo inválido");
                 break;
             case -2:
-                FXUtils.activateAlert(registerEmailError, "Campo obligatorio");
+                FXUtil.activateAlert(registerEmailError, "Campo obligatorio");
                 break;
             default:
                 break;
@@ -188,36 +187,36 @@ public class LoginPanelController implements Initializable {
         switch (checker[5]) {
             case 1: //Contraseña admitida
 
-                FXUtils.activateAlert(registerPasswordError, ""); //Se usa para ajuste de nodos (Responsive)
+                FXUtil.activateAlert(registerPasswordError, ""); //Se usa para ajuste de nodos (Responsive)
                 
                 //Comprueba que la contraseña re-ingresada no esté en blanco
                 if (Validator.checkBlank(registerRePassword.getText())) {
                     
                     //Comprueba que ambas contraseñas sean iguales
                     if (Validator.checkEqualPasswords(registerPassword.getText(), registerRePassword.getText())) {
-                        FXUtils.activateAlert(registerPasswordError, "");   //Se usa para ajuste de nodos (Responsive)
-                        FXUtils.activateAlert(registerRePasswordError, ""); //Se usa para ajuste de nodos (Responsive)
+                        FXUtil.activateAlert(registerPasswordError, "");   //Se usa para ajuste de nodos (Responsive)
+                        FXUtil.activateAlert(registerRePasswordError, ""); //Se usa para ajuste de nodos (Responsive)
                         checker[5] = 1;
                     }
                     else { //Contraseñas distintas
-                        FXUtils.activateAlert(registerRePasswordError, "Las contraseñas no coinciden");
+                        FXUtil.activateAlert(registerRePasswordError, "Las contraseñas no coinciden");
                         checker[5] = 0;
                     }
                 }
                 else {
-                    FXUtils.activateAlert(registerRePasswordError, "Campo obligatorio");
+                    FXUtil.activateAlert(registerRePasswordError, "Campo obligatorio");
                     checker[5] = 0;
                 }
                 
                 break;
             case 0: //Contraseña debil
-                FXUtils.activateAlert(registerPasswordError, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
+                FXUtil.activateAlert(registerPasswordError, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
                 break;
             case -1: //Contraseña corta
-                FXUtils.activateAlert(registerPasswordError, "Debe contener mínimo 8 caracteres");
+                FXUtil.activateAlert(registerPasswordError, "Debe contener mínimo 8 caracteres");
                 break;
             case -2: //Campo vacío
-                FXUtils.activateAlert(registerPasswordError, "Campo obligatorio");
+                FXUtil.activateAlert(registerPasswordError, "Campo obligatorio");
                 break;
             default:
                 break;
@@ -250,6 +249,9 @@ public class LoginPanelController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource(path));
         
         Scene scene = new Scene(root);
+        
+        String css = this.getClass().getResource("../resources/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         
         currentStage.setScene(scene);
         //currentStage.sizeToScene();

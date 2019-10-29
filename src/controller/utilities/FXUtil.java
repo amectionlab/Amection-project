@@ -13,9 +13,9 @@ import javafx.scene.control.TextField;
  *
  * @author bkdestroy
  */
-public final class FXUtils {
+public final class FXUtil {
     
-    public FXUtils() {}
+    public FXUtil() {}
     
     //Cambia texto de label y lo hace visible
     public static void activateAlert(Label label, String alertText) {

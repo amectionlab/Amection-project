@@ -27,7 +27,7 @@ public final class Validator {
         if (checkBlank(field)) {
             
             //Comprueba largo mínimo y máximo
-            if (field.matches(".{0,25}")) {
+            if (field.matches(".{0,45}")) {
         
                 //Comprueba que esté en formato "xxx*" o "xxx* xxx*"
                 if (field.matches("(^[a-zA-Z]*$|^[a-zA-Z]*[ ]{1}[a-zA-Z]*[ ]*$)")) {                    

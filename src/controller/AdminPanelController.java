@@ -14,16 +14,20 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import controller.utilities.FXUtil;
+import javafx.scene.control.MenuButton;
 import model.Administrator;
 import model.Dermatologist;
 import model.Patient;
-import security.Validator;
 
 public class AdminPanelController implements Initializable {
-
+    
+    //Contenido cbSearchType
+    ObservableList<String> searchTypeList = (FXCollections.observableArrayList("Administrador", "Dermatólogo", "Paciente"));
+    
+    //PANEL DE PERFIL
     @FXML
     private Button profileButton, statisticsButton, logsButton, searchButton;
     @FXML
@@ -31,24 +35,23 @@ public class AdminPanelController implements Initializable {
     @FXML
     private AnchorPane profilePane, adminsPane, dermsPane, patientsPane, StatisticsPane, logsPane, schGeneralPane, schNotFoundPane;
     @FXML
-    private SplitMenuButton welcomeLabel;
+    private MenuButton welcomeLabel;
     @FXML
     private TextField fullnameField, genderField, rutField, dateField, addressField, phoneField, emailField, searchField;
     @FXML
     private PasswordField passwordField, rePasswordField;
     @FXML
     private ComboBox cbSearchType;
-    
-    // Widgets de panel de busqueda -> panel de admin/dermatologo
     @FXML
-    private Label schLabel;
+    private Label passwordErrorLabel;
+    
+    // PANEL DE BUSQUEDA
+    @FXML
+    private Label schLabel, schPasswordError, schRePasswordError;
     @FXML
     private TextField schFullnameField, schGenderField, schRutField, schDateField, schAddressField, schPhoneField, schEmailField;
     @FXML
     private PasswordField schPasswordField, schRePasswordField;
-    
-    //Contenido cbSearchType
-    ObservableList<String> searchTypeList = (FXCollections.observableArrayList("Administrador", "Dermatólogo", "Paciente"));
     
     //Organizador de paneles
     DisplayPanel dPanel;
@@ -70,18 +73,20 @@ public class AdminPanelController implements Initializable {
         dPanel.insertDisplay(schGeneralPane);
         dPanel.insertDisplay(schNotFoundPane);
         
+        //Inicialización de labels
+        //FXUtil.activateAlert(passwordErrorLabel, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
+        //FXUtil.activateAlert(schPasswordError, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
+        
         //Obtiene objeto usuario conectado actualmente
         Administrator user = (Administrator) session.getLoggedUser();
         
-        //Datos personales
+        //Información del usuario
         fullnameField.setText(user.getFirstname() + " " + user.getLastname());
         genderField.setText(user.getGender());
         rutField.setText(user.getRut());
         dateField.setText(user.getDate());
         addressField.setText(user.getAddress());
         phoneField.setText(user.getPhoneNumber());
-        
-        //Información de cuenta
         emailField.setText(user.getEmail());
     }
     
@@ -121,6 +126,8 @@ public class AdminPanelController implements Initializable {
         //Comprueba que se haya seleccionado un item
         if (cbSearchType.getValue() != null) {
             
+            searchField.setText("");
+            
             //Transforma item seleccionado a una cadena
             String searchType = cbSearchType.getValue().toString();
         
@@ -141,7 +148,7 @@ public class AdminPanelController implements Initializable {
                     schPhoneField.setText(administrator.getPhoneNumber());
                     schEmailField.setText(administrator.getEmail());
                     
-                    //Activa panel de busqueda
+                    //Activa panel de busqueda//Datos personales
                     dPanel.activateDisplay(6);
                 }
                 else {
