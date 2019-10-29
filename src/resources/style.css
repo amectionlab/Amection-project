@@ -62,3 +62,11 @@
     -fx-background-color:  #AEC9D6;
     -fx-text-fill: #3a60ab;
 }
+
+.text-field:focused {
+    -fx-focus-color: #3a60ab;
+}
+
+.password-field:focused {
+    -fx-focus-color: #3a60ab;
+}
