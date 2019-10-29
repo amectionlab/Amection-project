@@ -41,6 +41,26 @@
     -fx-background-color: #3a60ab;
 }
 
+#profileButton {
+  -fx-graphic: url('http://icons.iconarchive.com/icons/custom-icon-design/silky-line-user/16/user-icon.png');
+}
+
+#usersButton {
+  -fx-graphic: url('http://icons.iconarchive.com/icons/icons8/ios7/16/Healthcare-Groups-icon.png');
+}
+
+#statisticsButton {
+  -fx-graphic: url('http://icons.iconarchive.com/icons/iconsmind/outline/16/Statistic-icon.png');
+}
+
+#logsButton {
+  -fx-graphic: url('http://icons.iconarchive.com/icons/iconsmind/outline/16/File-icon.png');
+}
+
+#searchButton {
+  -fx-graphic: url('http://icons.iconarchive.com/icons/led24.de/led/16/find-icon.png');
+}
+
 .menu-button {
     -fx-background-color: #AEC9D6;
 }

@@ -73,7 +73,7 @@ public class AdminPanelController implements Initializable {
         dPanel.insertDisplay(schGeneralPane);
         dPanel.insertDisplay(schNotFoundPane);
         
-        //Inicialización de labels
+        //Inicialización de nodos
         //FXUtil.activateAlert(passwordErrorLabel, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
         //FXUtil.activateAlert(schPasswordError, "Debe contener al menos:\n-Una minúscula\n-Una mayúscula\n-Un número\n-Largo mín. 8, máx 128 caracteres");
         
